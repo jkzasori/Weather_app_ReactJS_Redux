@@ -7,12 +7,12 @@ import ReduxPromise from 'redux-promise';
 import Home from './containers/home';
 import reducers from './reducers';
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 const app = document.getElementById("app");
 
 render(
-	<Provider store={createStoreWithMiddleware(reducers) }>
+	<Provider store={createStoreWithMiddleware(reducers)}>
 		<Home />
 	</Provider>
 	, app);

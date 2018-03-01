@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {fetchWeather} from '../actions/index';
 
@@ -11,7 +11,7 @@ class SearchBar extends Component {
 	}
 
 	onInputChange = event =>{
-		console.log(event.target.value)
+		
 		this.setState({
 			term: event.target.value
 		})

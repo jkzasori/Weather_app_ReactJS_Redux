@@ -10,8 +10,6 @@ export function fetchWeather(city) {
   const url = `${ROOT_URL}&q=${city},co`;
   const request = axios.get(url) //axios returns a promise, a promise is a data structure that doesn't contain yet any of our request data
 
-  
-
   return {
     type: FETCH_WEATHER,
     payload: request //what redux-promise does is to unwrap the promise and send the actual data to the reducers.
