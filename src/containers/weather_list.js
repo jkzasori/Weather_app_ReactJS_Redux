@@ -1,17 +1,28 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Chart from '../components/chart';
+import './weather_list.css'
+import GoogleMap from '../components/google_map';
 
  class WeatherList extends Component {
  	renderWeather(cityData){//contains the city data >list>main>etc...
  		const name = cityData.city.name;
- 		const temps = cityData.list.map(weather => weather.main.temp);//manipulating the api, we get the list and map over it to get the temp. {main: {temp: 260, humidity: 40, pressure: 55}} is the argument we pass as weathe
- 		console.log(temps)
+ 		const temps = _.map(cityData.list.map(weather => weather.main.temp), (temp) => temp -273);// convierte la temperatura en celcius-manipulating the api, we get the list and map over it to get the temp. {main: {temp: 260, humidity: 40, pressure: 55}} is the argument we pass as weathe
+ 		const pressures = cityData.list.map(weather => weather.main.pressure);
+ 		const humidities = cityData.list.map( weather => weather.main.humidity);
+ 		const {lon, lat} = cityData.city.coord;
+ 		// console.log(temps)
  		return(
  			<tr key={name}>
- 				<td>{name}</td>
+ 				<td><GoogleMap lon={lon} lat={lat} /></td>
  				<td>
- 					<Chart data={temps} color="orange" />
+ 					<Chart data={temps} color="orange" units="C" />
+ 				</td>
+ 				<td>
+ 					<Chart data={pressures} color="green" units="hPa" />
+ 				</td>
+ 				<td>
+ 					<Chart data={humidities} color="black" units="%" />
  				</td>
  			</tr>
  			)
@@ -23,9 +34,9 @@ import Chart from '../components/chart';
 				<thead>
 					<tr>
 						<th>City</th>
-						<th>Temperature</th>
-						<th>Pressure</th>
-						<th>Humidity</th>
+						<th>Temperature (C)</th>
+						<th>Pressure (hPa)</th>
+						<th>Humidity (%)</th>
 					</tr>
 				</thead>
 				<tbody>
