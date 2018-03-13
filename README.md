@@ -8,7 +8,7 @@ Checkout this repo, install dependencies, then start the gulp process with the f
 
 ```
 > git clone https://github.com/jkzasori/Weather_app_ReactJS_Redux.git
-> cd Frontend-condor
+> cd Weather_app_ReactJS_Redux
 > npm install
 > npm run build:dev
 Host: localhost
